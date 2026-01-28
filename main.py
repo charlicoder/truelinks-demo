@@ -4,6 +4,7 @@ FastAPI Backend for Construction Submittal Review Agent
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
@@ -17,6 +18,17 @@ app = FastAPI(
     title="Construction Submittal Review Agent",
     description="AI-powered agent for reviewing construction submittals against QCS 2024 standards",
     version="1.0.0"
+)
+
+# Trusted Host middleware - allow ALB hostname, public IP access, and localhost
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=[
+        "*.me-south-1.elb.amazonaws.com",
+        "localhost",
+        "127.0.0.1",
+        "*",  # Allow all hosts (for public IP access and ALB health checks)
+    ],
 )
 
 # CORS middleware
