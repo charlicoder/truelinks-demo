@@ -10,8 +10,8 @@ venv/
 .env
 
 # Knowledge base (large files, rebuild on deploy)
-QCS2024/
-kb_database/
+# QCS2024/
+# kb_database/
 
 # IDE
 .idea/
