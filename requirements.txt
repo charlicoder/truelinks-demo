@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+langgraph
+langchain
+langchain-community
+langchain-openai
+pymupdf
+faiss-cpu
+sentence-transformers
+numpy
+python-dotenv
+pydantic
+pytest
+httpx

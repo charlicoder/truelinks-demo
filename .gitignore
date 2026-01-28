@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+**/__pycache__
+*.py[cod]
+*.pyc
+.venv/
+venv/
+
+# Environment
+.env
+
+# Knowledge base (large files, rebuild on deploy)
+QCS2024/
+kb_database/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/

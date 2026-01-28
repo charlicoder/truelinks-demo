@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment files
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Knowledge base cache (handled by Docker volume)
+kb_database/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

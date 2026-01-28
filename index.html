@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCS 2024 Submittal Review Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>QCS 2024</h1>
+                        <span>Submittal Review Agent</span>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    <span class="badge-dot"></span>
+                    <span>AI-Powered</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="grid-container">
+                <!-- Input Form -->
+                <section class="card form-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Submit for Review
+                        </h2>
+                        <p class="card-description">Enter your construction submittal details for compliance verification</p>
+                    </div>
+                    
+                    <form id="submittal-form" class="form">
+                        <div class="form-group">
+                            <label for="submittal-type">Submittal Type</label>
+                            <select id="submittal-type" required>
+                                <option value="">Select category...</option>
+                                <option value="Concrete">Concrete</option>
+                                <option value="Structural Steel">Structural Steel</option>
+                                <option value="Earthworks">Earthworks</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Safety">Safety & Health</option>
+                                <option value="Materials">Materials</option>
+                                <option value="Waterproofing">Waterproofing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea 
+                                id="description" 
+                                rows="4" 
+                                placeholder="Describe the submittal item, including material type, intended use, and any specific requirements..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specifications">Specifications</label>
+                            <textarea 
+                                id="specifications" 
+                                rows="4" 
+                                placeholder="Enter technical specifications, grades, standards references, test results, or certifications..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            <span>Review Submittal</span>
+                        </button>
+                    </form>
+                </section>
+
+                <!-- Results Section -->
+                <section class="card results-card" id="results-section">
+                    <div class="card-header">
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            Review Results
+                        </h2>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                            </svg>
+                        </div>
+                        <p>Submit a construction item for review</p>
+                        <span>Results will appear here</span>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="loading-state hidden" id="loading-state">
+                        <div class="loader"></div>
+                        <p>Analyzing submittal...</p>
+                        <span id="loading-step">Retrieving relevant QCS 2024 standards</span>
+                    </div>
+
+                    <!-- Results Content -->
+                    <div class="results-content hidden" id="results-content">
+                        <!-- Decision Badge -->
+                        <div class="decision-section" id="decision-section">
+                            <div class="decision-badge" id="decision-badge">
+                                <span class="decision-icon" id="decision-icon"></span>
+                                <span class="decision-text" id="decision-text">PENDING</span>
+                            </div>
+                            <div class="confidence-bar">
+                                <span class="confidence-label">Confidence</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="confidence-fill"></div>
+                                </div>
+                                <span class="confidence-value" id="confidence-value">0%</span>
+                            </div>
+                        </div>
+
+                        <!-- Explanation -->
+                        <div class="explanation-section">
+                            <h3>Explanation</h3>
+                            <p id="explanation-text"></p>
+                        </div>
+
+                        <!-- Recommendations -->
+                        <div class="recommendations-section" id="recommendations-section">
+                            <h3>Recommendations</h3>
+                            <ul id="recommendations-list"></ul>
+                        </div>
+
+                        <!-- Citations -->
+                        <div class="citations-section">
+                            <h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                </svg>
+                                QCS 2024 Citations
+                            </h3>
+                            <div class="citations-list" id="citations-list"></div>
+                        </div>
+
+                        <!-- Full Analysis Toggle -->
+                        <details class="analysis-details">
+                            <summary>View Full Analysis</summary>
+                            <div class="analysis-content" id="analysis-content"></div>
+                        </details>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by LangGraph & QCS 2024 Knowledge Base</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
