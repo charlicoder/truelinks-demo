@@ -1,0 +1,42 @@
+# QCS 2024 Submittal Review Agent
+# Docker Compose Configuration
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qcs2024-submittal-agent
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      # Persistent knowledge base storage
+      - kb_data:/app/kb_database
+      # Mount QCS2024 documents (read-only)
+      - ./QCS2024:/app/QCS2024:ro
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+
+volumes:
+  kb_data:
+    driver: local
+    name: qcs2024_knowledge_base
+
